@@ -1,0 +1,30 @@
+PLAY [Homework] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+fatal: [host2]: FAILED! => {"ansible_facts": {}, "changed": false, "failed_modules": {"ansible.legacy.setup": {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3"}, "failed": true, "module_stderr": "Shared connection to remote-host-two closed.\r\n", "module_stdout": "\r\nansible is not in the sudoers file.\r\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1}}, "msg": "The following modules failed to execute: ansible.legacy.setup\n"}
+ok: [host1]
+
+TASK [Task ping] ***************************************************************
+ok: [host1]
+
+TASK [Task apt-get update] *****************************************************
+changed: [host1]
+
+TASK [Installing package] ******************************************************
+changed: [host1]
+
+TASK [Copy File] ***************************************************************
+changed: [host1]
+
+TASK [Create Groups] ***********************************************************
+changed: [host1] => (item=devops_1)
+changed: [host1] => (item=test_1)
+
+TASK [Create User] *************************************************************
+changed: [host1] => (item={'client_name': 'devops_1', 'home_dir': 'devops_1'})
+changed: [host1] => (item={'client_name': 'test_1', 'home_dir': 'test_1'})
+
+PLAY RECAP *********************************************************************
+host1                      : ok=7    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+host2                      : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
